@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Деталі авто</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <header>
+        <h1>Деталі авто</h1>
+    </header>
+    <main>
+        <div class="car-details">
+            <img id="car-image" src="" alt="Car Image">
+            <h2 id="car-title">Авто 1</h2>
+            <p id="car-description">Опис машини...</p>
+            <button onclick="orderCar()">Замовити</button>
+        </div>
+    </main>
+    <script>
+        function getQueryParameter(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function loadCarDetails() {
+            const carId = getQueryParameter('carId');
+            // Завантаження деталей машини з бази даних або статичного файлу
+            const carDetails = {
+                1: {
+                    title: 'Авто 1',
+                    description: 'Детальний опис авто 1...',
+                    image: 'car1.jpg'
+                }
+                // Додати інші авто аналогічно
+            };
+
+            const car = carDetails[carId];
+            if (car) {
+                document.getElementById('car-title').textContent = car.title;
+                document.getElementById('car-description').textContent = car.description;
+                document.getElementById('car-image').src = car.image;
+            }
+        }
+
+        function orderCar() {
+            const email = prompt('Введіть ваш email для підтвердження замовлення:');
+            if (email) {
+                // Відправлення листа з підтвердженням (імітовано)
+                alert(`Замовлення підтверджено. Підтвердження відправлено на ${email}.`);
+            }
+        }
+
+        window.onload = loadCarDetails;
+    </script>
+</body>
+</html>
